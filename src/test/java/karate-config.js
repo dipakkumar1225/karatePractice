@@ -4,6 +4,7 @@ function fn() {
     karate.log('karate.env system property was:', env);
 
     if (!env) {
+        //Java function to read browser value from properties
         env = Java.type('examples.users.utilities.ConfigReader').read("app.target.browser").trim();
     }
 
@@ -13,6 +14,8 @@ function fn() {
 
     switch (env) {
         case "chrome":
+            //Java function to get screen resolution/dimension
+            //Java function to get screen chrome driver file path
             karate.configure('driver', {
                 type: 'chromedriver',
                 executable: Java.type('examples.users.utilities.Miscellaneous').getDriverFilePath() + "chromedriver.exe",
