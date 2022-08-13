@@ -4,3 +4,4 @@ Feature: Launch browser example 1
     Given driver 'https://www.google.com'
     When input("input[type=text]", 'karate')
     And submit()
+    * delay(10000)

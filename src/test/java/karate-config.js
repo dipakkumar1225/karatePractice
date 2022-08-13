@@ -12,22 +12,22 @@ function fn() {
         env: env,
     };
 
+    /**
+     * Below functions helps to set driver configuration globally, instead of calling in each feature file.
+     * getWindowResolution() is Java function to get screen resolution/dimension
+     * getDriverFilePath() is Java function to get the driver file path
+     */
+
     switch (env) {
         case "chrome":
-            //Java function to get screen resolution/dimension
-            //Java function to get screen chrome driver file path
             karate.configure('driver', {
-                type: 'chromedriver',
-                executable: Java.type('examples.users.utilities.Miscellaneous').getDriverFilePath() + "chromedriver.exe",
-                addOptions: ["--start-maximized", "--window-size=\"" + Java.type('examples.users.utilities.Miscellaneous').getWindowResolution() + "\"", "--disable-extensions"]
+                type: 'chrome',
+                addOptions: ["--no-default-browser-check", "--incognito", "--window-size=\"" + Java.type('examples.users.utilities.Miscellaneous').getWindowResolution() + "\"", "--disable-extensions"]
             });
             break;
 
         case "firefox":
-            karate.configure('driver', {
-                type: 'firefox',
-                addOptions: ["--incognito", "--window-size=\"" + Java.type('examples.users.utilities.Miscellaneous').getWindowResolution() + "\"", "--disable-extensions"]
-            });
+            karate.configure('driver', { type: 'geckodriver', executable: Java.type('examples.users.utilities.Miscellaneous').getDriverFilePath() + "geckodriver.exe" });
             break;
 
         default:
